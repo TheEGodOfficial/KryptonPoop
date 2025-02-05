@@ -95,8 +95,8 @@ local UserInputService = FindFirstChildOfClass(game, "UserInputService")
 local Camera = Workspace.CurrentCamera
 local PreviousCameraCFrame = Camera.CFrame
 
-local HSWait = RunService.PostSimulation.Wait
-local PSWait = RunService.PreSimulation.Wait
+local HSWait = RunService.PostSimulation
+local PSWait = RunService.PreSimulation
 
 local IsMobile = ForceMobileMode or UserInputService.TouchEnabled
 local IsKeyboard = ForceDesktopMode or UserInputService.KeyboardEnabled
@@ -735,7 +735,7 @@ local function FlingModels() -- : nil
 					break
 				end
 
-				HSWait()
+				HSWait:Wait()
 			end
 		end
 	end
@@ -1130,7 +1130,7 @@ Global.KadeAPI = {
 		end
 	end,
 
-	SWait = PSWait, -- Stepped Wait
+	SWait = PSWait:Wait() -- Stepped Wait
 
 	SetAnimationState = function(Status) -- Stops Animations
 		local Animator = FindFirstChildOfClass(FakeHumanoid, "Animator")
